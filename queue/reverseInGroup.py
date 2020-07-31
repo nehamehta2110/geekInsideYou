@@ -1,3 +1,4 @@
+# User function Template for python3
 class Queue:
     def __init__(self, capacity):
         """
@@ -76,20 +77,45 @@ class Queue:
             return True
         return False
 
+    def printQueue(self):
+        print(*self.Q)
+
+    def reverseQueueFirstK(self, k):
+        """
+        reverse the first k elements of the queue
+        """
+        if k <= 0:
+            return
+        if self.size == 0 or k > self.size:
+            return
+
+        stack = []
+
+        while k != 0:
+            stack.append(self.Q[self.front])
+            self.dequeue()
+            k -= 1
+
+        while len(stack) != 0:
+            self.enqueue(stack[-1])
+            stack.pop()
+
 
 def main():
-    """
-    driver function
-    """
     q = Queue(10)
-    print(q.isEmpty())
-    q.enqueue(3)
-    q.enqueue(46)
+    q.enqueue(1)
     q.enqueue(2)
-    q.q_front()
-    q.q_rear()
-    q.dequeue()
-    q.q_front()
+    q.enqueue(3)
+    q.enqueue(4)
+    q.enqueue(5)
+    q.enqueue(6)
+    q.enqueue(7)
+    q.enqueue(8)
+    q.enqueue(9)
+    q.enqueue(10)
+    q.printQueue()
+    q.reverseQueueFirstK(5)
+    q.printQueue()
 
 
 if __name__ == '__main__':
